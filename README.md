@@ -1,2 +1,2 @@
-# udemy_redux
+# learn_redux
 Created with CodeSandbox
