@@ -1,32 +1,23 @@
 import React, { Component } from "react";
 import "../styles.css";
+import { connect } from "react-redux";
+
+import { increment, decrement } from "../actions";
 
 class App extends Component {
-  state = {
-    count: 0
-  };
-
-  handleClickPlus = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  };
-
-  handleClickMinus = () => {
-    this.setState({
-      count: this.state.count - 1
-    });
-  };
-
   render() {
+    const props = this.props;
     return (
       <div className="Count">
-        <div>Count: {this.state.count}</div>
-        <button onClick={this.handleClickPlus}>+1</button>
-        <button onClick={this.handleClickMinus}>-1</button>
+        <div>value: {props.value}</div>
+        <button onClick={props.increment}>+1</button>
+        <button onClick={props.decrement}>-1</button>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({ value: state.count.value });
+const mapDispatchToProps = { increment, decrement };
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
